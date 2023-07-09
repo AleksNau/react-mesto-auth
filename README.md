@@ -1,7 +1,43 @@
-# Здесь будет ваш проект на Реакте с авторизацией и регистрацией
+# Проект: Место
 
-Используйте ваши предыдущие наработки по проекту Mesto. Это может быть работа 11-го спринта или его улучшенная версия после 2-х последних спринтов. 
+Учебный проект о работе с DOM элементами. Спринт от Яндекс практикума
 
-Все запросы на авторизацию, регистрацию и проверку токена должны работать через сервис `https://auth.nomoreparties.co`. Остальные запросы, не относящиеся к этой проектной работе могут быть к бэкенду из предыдущих спринтов.
+https://aleksnau.github.io/mesto-react/
 
-Успехов!
+## Color Reference
+
+| Color         | Hex                                                              |
+|---------------|------------------------------------------------------------------|
+| Example Color | ![#545454](https://via.placeholder.com/10/545454?text=+) #545454 |
+| Example Color | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF |
+| Example Color | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
+
+## Features
+
+- Flexbox,Grid
+- Проект собран через Webpack
+- Адаптив,Кросбраузерность
+- javascript
+- Git
+- Валидация всех форм через JS
+- Улучшена UX при работе с попапами
+- Используется модульность JS
+- Используются классы для создания карточки
+- Подключен к серверу
+- Асинхроность
+
+## Optimizations
+
+Оптимизированы изображения через Photoshop
+Код оптимизирован через PostCss
+
+
+## Related
+
+[Autoprefixer](https://github.com/autoprefixer/autoprefixer.github.io)
+
+[README.SO](https://github.com/matiassingers/awesome-readme)
+
+[Practicum](https://practicum.yandex.ru/)
+
+[Webpack](https://webpack.js.org/)
