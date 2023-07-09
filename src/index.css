@@ -49,4 +49,5 @@
 @import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/__place-name/popup__place-name.css);
 @import url(./blocks/popup/__error/popup__error.css);
-
+@import url(./blocks/sign-up/sign-up__input/sign-up__input.css);
+@import url(./blocks/sign-up/sign-up.css);

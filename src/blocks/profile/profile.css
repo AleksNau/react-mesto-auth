@@ -1,4 +1,6 @@
 .profile {
+    visibility: hidden;
+    height: 1px;
     padding-top: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
