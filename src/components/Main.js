@@ -1,7 +1,7 @@
 import React from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import Card from "./Card";
-import SignUp from "./Sign-up";
+import Register from "./Register";
 
 const Main = ({
   cards,
@@ -62,7 +62,7 @@ const Main = ({
           />
         ))}
       </ul>
-      <SignUp></SignUp>
+      <Register></Register>
     </main>
   );
 };

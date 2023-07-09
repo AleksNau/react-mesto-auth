@@ -11,6 +11,7 @@ import EditAvatarPopup from "./EditAvatarPopup.js";
 import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import LoadingText from "../contexts/loadingContext";
+import InfoTooltip from "./InfoTooltip";
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -20,6 +21,7 @@ const App = () => {
   const [isEditProfilePopupOpen, setPopupProfile] = useState(false);
   const [isAddPlacePopupOpen, setPopupAdd] = useState(false);
   const [isSubmitPopupOpen, setPopupSubmit] = useState(false);
+  const [isCompletePopupOpen, setComplete] =  useState(false)
 
   const [cardToDelete, setCardToDelete] = useState({});
   //установить карточку
@@ -32,6 +34,7 @@ const App = () => {
     setPopupProfile(false);
     setPopupAdd(false);
     setPopupSubmit(false);
+    setComplete(false)
     handleCardClick({});
   }
 
@@ -184,6 +187,11 @@ const App = () => {
             cardToDelete={cardToDelete}
           />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+          <InfoTooltip
+              isOpen={isCompletePopupOpen}
+              name={"complete"}
+              onClose={closeAllPopups}
+          />
         </CurrentUserContext.Provider>
       </LoadingText.Provider>
     </div>
