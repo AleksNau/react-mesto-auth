@@ -1,9 +1,6 @@
 .sign-up {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
 }
 
-
-
+.sign-up__sub {
+text-align: center;
+}

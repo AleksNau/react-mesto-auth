@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const SignUp = () => {
+const LogIn = () => {
     return (
         <div className="sign-up">
             <form onSubmit={(event) => {
@@ -11,7 +11,7 @@ const SignUp = () => {
             >
 
                 <fieldset className="sign-up__fieldset">
-                    <legend className="sign-up__title">Регистрация</legend>
+                    <legend className="sign-up__title">Вход</legend>
 
                     <label>
                         <input
@@ -44,8 +44,7 @@ const SignUp = () => {
             </span>
                     </label>
                     <button type="submit" className="sign-up__submit" form={`sign-up-form`}
-                            value="Зарегистрироваться">Зарегистрироваться</button>
-                    <p className="sign-up__sub">Уже зарегистрированы? Войти</p>
+                            value="Войти">Войти</button>
                 </fieldset>
 
             </form>
@@ -54,4 +53,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default LogIn;
