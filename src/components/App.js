@@ -15,7 +15,7 @@ import InfoTooltip from "./InfoTooltip";
 
 const App = () => {
   const [cards, setCards] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
+  
   //обработчики попапов
   const [isPopupAvatar, setPopupAvatar] = useState(false);
   const [isEditProfilePopupOpen, setPopupProfile] = useState(false);
@@ -28,6 +28,21 @@ const App = () => {
   const [selectedCard, handleCardClick] = useState({});
   //обработчик загрузки
   const [isLoading, setIsLoading] = useState(false);
+  
+  //проверка авторизации
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+
+ // const auth = (jwt) => {
+ //   return api.auth.getContent(jwt)
+ // }
+
+useEffect(() => {
+const jwt = localStorage.getItem('jwt');
+if (jwt) {
+  auth(jwt);
+}
+},[])
 
   function closeAllPopups() {
     setPopupAvatar(false);

@@ -2,6 +2,10 @@ import React from "react";
 
 
 const Register = () => {
+    export const getContent= (token) => {
+return fetch(``)
+    }
+
     return (
         <div className="sign-up">
             <form onSubmit={(event) => {
