@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const LogIn = () => {
+const Login = () => {
     return (
         <div className="sign-up">
             <form onSubmit={(event) => {
@@ -53,4 +53,4 @@ const LogIn = () => {
     );
 };
 
-export default LogIn;
+export default Login;
