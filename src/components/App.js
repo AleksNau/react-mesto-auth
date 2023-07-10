@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "../index.css";
 import Footer from "./Footer.js";
 import Header from "./Header.js";
@@ -12,63 +12,69 @@ import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import LoadingText from "../contexts/loadingContext";
 import InfoTooltip from "./InfoTooltip";
+import { Route, Routes } from "react-router-dom";
+import Register from "./Register";
 
 const App = () => {
   const [cards, setCards] = useState([]);
-  
+
   //обработчики попапов
   const [isPopupAvatar, setPopupAvatar] = useState(false);
   const [isEditProfilePopupOpen, setPopupProfile] = useState(false);
   const [isAddPlacePopupOpen, setPopupAdd] = useState(false);
   const [isSubmitPopupOpen, setPopupSubmit] = useState(false);
-  const [isCompletePopupOpen, setComplete] =  useState(false)
+  const [isCompletePopupOpen, setComplete] = useState(false);
 
   const [cardToDelete, setCardToDelete] = useState({});
   //установить карточку
   const [selectedCard, handleCardClick] = useState({});
   //обработчик загрузки
   const [isLoading, setIsLoading] = useState(false);
-  
+
   //проверка авторизации
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
- // const auth = (jwt) => {
- //   return api.auth.getContent(jwt)
- // }
-
-useEffect(() => {
-const jwt = localStorage.getItem('jwt');
-if (jwt) {
-  auth(jwt);
-}
-},[])
+  // const auth = (jwt) => {
+  //   return api.auth.getContent(jwt)
+  // }
+  function auth() {}
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth(jwt);
+    }
+  }, []);
 
   function closeAllPopups() {
     setPopupAvatar(false);
     setPopupProfile(false);
     setPopupAdd(false);
     setPopupSubmit(false);
-    setComplete(false)
+    setComplete(false);
     handleCardClick({});
   }
 
-  const isOpen = isPopupAvatar || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link;
+  const isOpen =
+    isPopupAvatar ||
+    isEditProfilePopupOpen ||
+    isAddPlacePopupOpen ||
+    selectedCard.link;
 
   useEffect(() => {
     function closeByEscape(evt) {
-      if(evt.key === 'Escape') {
+      if (evt.key === "Escape") {
         closeAllPopups();
       }
     }
-    if(isOpen) { // навешиваем только при открытии
-      document.addEventListener('keydown', closeByEscape);
+    if (isOpen) {
+      // навешиваем только при открытии
+      document.addEventListener("keydown", closeByEscape);
       return () => {
-        document.removeEventListener('keydown', closeByEscape);
-      }
+        document.removeEventListener("keydown", closeByEscape);
+      };
     }
-  }, [isOpen])
-
+  }, [isOpen]);
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -161,18 +167,25 @@ if (jwt) {
         <CurrentUserContext.Provider value={currentUser}>
           <div className="page">
             <Header />
-            <Main
-              cards={cards}
-              isPopupSubmit={isSubmitPopupOpen}
-              handleEditAvatarClick={setPopupAvatar}
-              handleEditProfileClick={setPopupProfile}
-              onSubmitDelete={setPopupSubmit}
-              handleAddPlaceClick={setPopupAdd}
-              onCardClick={handleCardClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
-              setCardToDelete={setCardToDelete}
-            />
+            <Routes>
+              <Route path="/" element={<Main
+                  cards={cards}
+                  isPopupSubmit={isSubmitPopupOpen}
+                  handleEditAvatarClick={setPopupAvatar}
+                  handleEditProfileClick={setPopupProfile}
+                  onSubmitDelete={setPopupSubmit}
+                  handleAddPlaceClick={setPopupAdd}
+                  onCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleCardDelete}
+                  setCardToDelete={setCardToDelete}
+                />}>
+                
+              </Route>
+              <Route path="/register" element={<Register/>}>
+                
+              </Route>
+            </Routes>
             <Footer />
           </div>
 
@@ -203,9 +216,9 @@ if (jwt) {
           />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
           <InfoTooltip
-              isOpen={isCompletePopupOpen}
-              name={"complete"}
-              onClose={closeAllPopups}
+            isOpen={isCompletePopupOpen}
+            name={"complete"}
+            onClose={closeAllPopups}
           />
         </CurrentUserContext.Provider>
       </LoadingText.Provider>
