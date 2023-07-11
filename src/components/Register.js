@@ -1,10 +1,24 @@
-import React from "react";
+import React,{useState} from "react";
 
 
 const Register = () => {
     /*export const getContent= (token) => {
 return fetch(``)
     }*/
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    
+  function handlEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  // input change
+  function handlePassword(e) {
+    setPassword(e.target.value);
+  }
+
 
     return (
         <div className="sign-up">
@@ -26,6 +40,7 @@ return fetch(``)
                             minLength="2"
                             maxLength="40"
                             placeholder="Email"
+                            onChange={handlEmail}
                             required
                         />
                         <span id="name-error" className="popup__error">
@@ -41,6 +56,7 @@ return fetch(``)
                             minLength="2"
                             maxLength="30"
                             placeholder="Пароль"
+                            onChange={handlePassword}
                             required
                         />
                         <span id="info-error" className="popup__error">
