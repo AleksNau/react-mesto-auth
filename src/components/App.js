@@ -12,9 +12,10 @@ import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import LoadingText from "../contexts/loadingContext";
 import InfoTooltip from "./InfoTooltip";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
+import ProtectedRoute from "./ProtectedRoute";
 
 const App = () => {
     const [cards, setCards] = useState([]);
@@ -33,7 +34,7 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     //проверка авторизации
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
     const [currentUser, setCurrentUser] = useState({});
 
     // const auth = (jwt) => {
@@ -171,24 +172,24 @@ const App = () => {
                 <CurrentUserContext.Provider value={currentUser}>
                     <div className="page">
                         <Header/>
+
                         <Routes>
-                            <Route path="/" element={<Main
-                                cards={cards}
-                                isPopupSubmit={isSubmitPopupOpen}
-                                handleEditAvatarClick={setPopupAvatar}
-                                handleEditProfileClick={setPopupProfile}
-                                onSubmitDelete={setPopupSubmit}
-                                handleAddPlaceClick={setPopupAdd}
-                                onCardClick={handleCardClick}
-                                onCardLike={handleCardLike}
-                                onCardDelete={handleCardDelete}
-                                setCardToDelete={setCardToDelete}
-                            />}>
-                            </Route>
+                            <Route element={<ProtectedRoute path='/' loggedIn={loggedIn}
+                                         component={Main} cards={cards}
+                                         isPopupSubmit={isSubmitPopupOpen}
+                                         handleEditAvatarClick={setPopupAvatar}
+                                         handleEditProfileClick={setPopupProfile}
+                                         onSubmitDelete={setPopupSubmit}
+                                         handleAddPlaceClick={setPopupAdd}
+                                         onCardClick={handleCardClick}
+                                         onCardLike={handleCardLike}
+                                         onCardDelete={handleCardDelete}
+                                         setCardToDelete={setCardToDelete}/>}/>
                             <Route path="/sign-up" element={<Register/>}>
                             </Route>
                             <Route path="/sign-in" element={<Login/>}>
                             </Route>
+                            <Route path="*" element={<Navigate to="/" />} />
                         </Routes>
                         <Footer/>
                     </div>
