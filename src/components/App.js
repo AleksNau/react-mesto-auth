@@ -17,7 +17,7 @@ import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
 import authMesto from "../utils/mestoApi";
-import { useHistory } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -39,12 +39,12 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   //элемент history
-  const history = useHistory();
+  const history = useNavigate();
 
   // const auth = (jwt) => {
   //   return api.auth.getContent(jwt)
   // }
-  function auth() {
+  function auth(jwt) {
     return auth.getContent(jwt).then((res) => {
       if (res) {
         setLoggedIn(true);
@@ -66,7 +66,7 @@ const App = () => {
 
   useEffect(() => {
     if (loggedIn) {
-      history.push("/");
+      history("/");
     }
   }, [loggedIn]);
 
