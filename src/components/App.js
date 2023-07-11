@@ -39,7 +39,7 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   //элемент history
-  const history = useNavigate();
+const history = useNavigate();
 
   // const auth = (jwt) => {
   //   return api.auth.getContent(jwt)
@@ -66,7 +66,7 @@ const App = () => {
 
   useEffect(() => {
     if (loggedIn) {
-      history("/");
+history("/");
     }
   }, [loggedIn]);
 
@@ -232,9 +232,9 @@ const App = () => {
               />
               <Route path="/sign-up" element={<Register />}></Route>
               <Route path="/sign-in" element={<Login />}></Route>
-              <Route path="*" element={<Navigate to="/" />} />
-              <Route>
-                {loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />}
+              <Route path="*" element={(<Navigate to="/" />)} />
+              <Route element={loggedIn ? (<Navigate to="/" />) :( <Navigate to="/sign-in" />)}>
+
               </Route>
             </Routes>
             <Footer />
