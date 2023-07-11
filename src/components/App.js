@@ -174,17 +174,19 @@ const App = () => {
                         <Header/>
 
                         <Routes>
-                            <Route element={<ProtectedRoute path='/' loggedIn={loggedIn}
-                                         component={Main} cards={cards}
-                                         isPopupSubmit={isSubmitPopupOpen}
-                                         handleEditAvatarClick={setPopupAvatar}
-                                         handleEditProfileClick={setPopupProfile}
-                                         onSubmitDelete={setPopupSubmit}
-                                         handleAddPlaceClick={setPopupAdd}
-                                         onCardClick={handleCardClick}
-                                         onCardLike={handleCardLike}
-                                         onCardDelete={handleCardDelete}
-                                         setCardToDelete={setCardToDelete}/>}/>
+                            <Route path='/'
+                                element={<ProtectedRoute
+                                loggedIn={loggedIn}
+                                component={Main} cards={cards}
+                                isPopupSubmit={isSubmitPopupOpen}
+                                handleEditAvatarClick={setPopupAvatar}
+                                handleEditProfileClick={setPopupProfile}
+                                onSubmitDelete={setPopupSubmit}
+                                handleAddPlaceClick={setPopupAdd}
+                                onCardClick={handleCardClick}
+                                onCardLike={handleCardLike}
+                                onCardDelete={handleCardDelete}
+                                setCardToDelete={setCardToDelete}/>}/>
                             <Route path="/sign-up" element={<Register/>}>
                             </Route>
                             <Route path="/sign-in" element={<Login/>}>
