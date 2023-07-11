@@ -93,6 +93,34 @@
             .then(this._checkResponse);
     };
 
+/*заготовки под запросы на регистрацию и авторизацию
+    registration(pass,email) {
+        return fetch( 'https://auth.nomoreparties.co' + '/signup', {
+            method: 'POST',
+            'Content-Type': 'application/json',
+            body: JSON.stringify({
+                "password": pass,
+                "email": email 
+            })
+        }
+        )
+            .then(this._checkResponse);
+    }
+
+
+    signin(pass,email) {
+        return fetch( 'https://auth.nomoreparties.co' + '/signin', {
+            method: 'POST',
+            'Content-Type': 'application/json',
+            body: JSON.stringify({
+                "password": pass,
+                "email": email 
+            })
+        }
+        )
+            .then(this._checkResponse);
+    }*/
+
 }
 
 const api = new Api("https://mesto.nomoreparties.co/v1/cohort-66",

@@ -1,13 +1,15 @@
 import React,{useState} from "react";
+import {useHistory} from 'react-router-dom'
 
 
-const Register = () => {
+const Register = ({onRegister}) => {
     /*export const getContent= (token) => {
 return fetch(``)
     }*/
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
 
     
   function handlEmail(e) {
@@ -18,6 +20,15 @@ return fetch(``)
   function handlePassword(e) {
     setPassword(e.target.value);
   }
+
+  /*function handleSubmit(e) {
+    e.preventDefault();
+    //после успешного запроса пробрасываем пользователя на логин
+    history.push('/sign-in')
+
+    //заглушка запроса
+    onRegister(email,password);
+  }*/
 
 
     return (

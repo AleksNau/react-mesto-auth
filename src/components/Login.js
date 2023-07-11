@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Login = () => {
+const Login = ({onLogin}) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -15,6 +15,16 @@ const Login = () => {
   function handlePassword(e) {
     setPassword(e.target.value);
   }
+
+
+ /* function handleSubmit(e) {
+    e.preventDefault();
+    //после успешного запроса пробрасываем пользователя на логин
+    history.push('/')
+
+    //заглушка запроса
+    onLogin(email,password);
+  }*/
     return (
         <div className="sign-up">
             <form onSubmit={(event) => {
