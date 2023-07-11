@@ -192,6 +192,7 @@ const App = () => {
                             <Route path="/sign-in" element={<Login/>}>
                             </Route>
                             <Route path="*" element={<Navigate to="/" />} />
+                            <Route >{loggedIn ? <Navigate to="/" /> :  <Navigate to="/sign-in" /> }</Route>
                         </Routes>
                         <Footer/>
                     </div>
