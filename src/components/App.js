@@ -70,9 +70,9 @@ const App = () => {
   const onLogin = (email, password) => {
     authMesto.signin(email, password).then((res) => {
       if (!res) throw new Error("Неправильное имя и пароль!");
-      if (res.jwt) {
+      if (res.token) {
         setLoggedIn(true);
-        localStorage.setItem("jwt", res.jwt);
+        localStorage.setItem("token", res.token);
       }
     });
   };

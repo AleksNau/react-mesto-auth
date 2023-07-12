@@ -73,7 +73,7 @@ return fetch(``)
               minLength="2"
               maxLength="30"
               placeholder="Пароль"
-              onChange={handlePassword}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <span id="info-error" className="popup__error">
