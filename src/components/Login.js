@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useCallback, useState} from "react";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -12,15 +12,20 @@ const Login = ({ onLogin }) => {
   function handlePassword(e) {
     setPassword(e.target.value);
   }
+  //колбэк для того чтобы функция не пересоздавалась
+const resetForm = useCallback(() => {
+  setEmail('');
+  setPassword('');
+},[])
 
-  /* function handleSubmit(e) {
+   function handleSubmit(e) {
     e.preventDefault();
-    //после успешного запроса пробрасываем пользователя на логин
-    history.push('/')
-
     //заглушка запроса
-    onLogin(email,password);
-  }*/
+    onLogin(email,password)
+    .then(resetForm)//очищаем форму
+    .then(() => { history.push('/')})//после успешного запроса пробрасываем пользователя на логин
+    .catch(console.error)
+  }
   return (
     <div className="sign-up">
       <form

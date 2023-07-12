@@ -62,7 +62,7 @@ const history = useNavigate();
       //тестовый запрос
       //    auth(jwt)
     }
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -85,8 +85,13 @@ history("/");
 
   //функция логина
 
-  const onRegister = (email, password) => {};
+  const onRegister = (email, password) => {
+return authMesto.registration(email, password).then((res) => {
+  if(!res || res.statusCode === 400) throw new Error ('Что то не так!');
+  return res;
 
+  });
+  }
   function closeAllPopups() {
     setPopupAvatar(false);
     setPopupProfile(false);
@@ -96,11 +101,7 @@ history("/");
     handleCardClick({});
   }
 
-  const isOpen =
-    isPopupAvatar ||
-    isEditProfilePopupOpen ||
-    isAddPlacePopupOpen ||
-    selectedCard.link;
+  const isOpen =isPopupAvatar || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link;
 
   useEffect(() => {
     function closeByEscape(evt) {
