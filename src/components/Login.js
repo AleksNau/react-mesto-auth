@@ -1,10 +1,10 @@
-import React,{useCallback, useState} from "react";
-import { useNavigate  } from "react-router-dom";
+import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-const navigate = useNavigate();
+  const navigate = useNavigate();
   function handlEmail(e) {
     setEmail(e.target.value);
   }
@@ -14,24 +14,25 @@ const navigate = useNavigate();
     setPassword(e.target.value);
   }
   //колбэк для того чтобы функция не пересоздавалась
-const resetForm = useCallback(() => {
-  setEmail('');
-  setPassword('');
-},[])
+  const resetForm = useCallback(() => {
+    setEmail("");
+    setPassword("");
+  }, []);
 
-   function handleSubmit(e) {
-    e.preventDefault();
-    //заглушка запроса
-    onLogin(email,password)
-    .then(resetForm)//очищаем форму
-    .then(() => { navigate('/')})//после успешного запроса пробрасываем пользователя на логин
-    .catch(console.error)
+  function handleSubmit() {
+    onLogin(email, password)
+      .then(resetForm) //очищаем форму
+      .then(() => {
+        navigate("/");
+      }) //после успешного запроса пробрасываем пользователя на логин
+      .catch(console.error);
   }
   return (
     <div className="sign-up">
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          handleSubmit();
         }}
         name={`sign-up-form`}
         className={`popup__form popup__form_sign-up`}

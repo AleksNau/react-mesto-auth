@@ -12,7 +12,7 @@ import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import LoadingText from "../contexts/loadingContext";
 import InfoTooltip from "./InfoTooltip";
-import { Route, Routes, Navigate,useNavigate } from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
@@ -38,7 +38,7 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   //элемент history
-const history = useNavigate();
+  const history = useNavigate();
 
   function auth(jwt) {
     return auth.getContent(jwt).then((res) => {
@@ -55,7 +55,7 @@ const history = useNavigate();
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-         auth(jwt)
+      auth(jwt);
     }
   }, [loggedIn]);
 
@@ -69,24 +69,22 @@ const history = useNavigate();
 
   const onLogin = (email, password) => {
     authMesto.signin(email, password).then((res) => {
-        if(!res) throw new Error ('Неправильное имя и пароль!');
-        if(res.jwt) {
-            setLoggedIn(true);
-            localStorage.setItem('jwt', res.jwt);
-        }
-
-    })
+      if (!res) throw new Error("Неправильное имя и пароль!");
+      if (res.jwt) {
+        setLoggedIn(true);
+        localStorage.setItem("jwt", res.jwt);
+      }
+    });
   };
 
   //функция логина
 
   const onRegister = (email, password) => {
-return authMesto.registration(email, password).then((res) => {
-  if(!res || res.statusCode === 400) throw new Error ('Что то не так!');
-  return res;
-
-  });
-  }
+    return authMesto.registration(email, password).then((res) => {
+      if (!res || res.statusCode === 400) throw new Error("Что то не так!");
+      return res;
+    });
+  };
   function closeAllPopups() {
     setPopupAvatar(false);
     setPopupProfile(false);
@@ -96,7 +94,11 @@ return authMesto.registration(email, password).then((res) => {
     handleCardClick({});
   }
 
-  const isOpen =isPopupAvatar || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link;
+  const isOpen =
+    isPopupAvatar ||
+    isEditProfilePopupOpen ||
+    isAddPlacePopupOpen ||
+    selectedCard.link;
 
   useEffect(() => {
     function closeByEscape(evt) {
@@ -226,12 +228,20 @@ return authMesto.registration(email, password).then((res) => {
                   />
                 }
               />
-              <Route path="/sign-up" element={<Register onRegister={onRegister} />}></Route>
-              <Route path="/sign-in" element={<Login onLogin={onLogin} />}></Route>
-              <Route path="*" element={(<Navigate to="/" />)} />
-              <Route element={loggedIn ? (<Navigate to="/" />) :( <Navigate to="/sign-in" />)}>
-
-              </Route>
+              <Route
+                path="/sign-up"
+                element={<Register onRegister={onRegister} />}
+              ></Route>
+              <Route
+                path="/sign-in"
+                element={<Login onLogin={onLogin} />}
+              ></Route>
+              <Route path="*" element={<Navigate to="/" />} />
+              <Route
+                element={
+                  loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
+                }
+              ></Route>
             </Routes>
             <Footer />
           </div>

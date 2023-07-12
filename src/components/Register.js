@@ -1,4 +1,4 @@
-import React, { useState,useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Register = ({ onRegister }) => {
@@ -11,9 +11,9 @@ return fetch(``)
   const history = useNavigate();
 
   const resetForm = useCallback(() => {
-    setEmail('');
-    setPassword('');
-  },[])
+    setEmail("");
+    setPassword("");
+  }, []);
   function handlEmail(e) {
     setEmail(e.target.value);
   }
@@ -23,15 +23,14 @@ return fetch(``)
     setPassword(e.target.value);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    //после успешного запроса пробрасываем пользователя на логин
-    history('/sign-in')
+  function handleSubmit() {
     //заглушка запроса
-    onRegister(email,password)
-    .then(resetForm)//очищаем форму
-    .then(() => { history.push('/sign-in')})//после успешного запроса пробрасываем пользователя на логин
-    .catch(console.error)
+    onRegister(email, password)
+      .then(resetForm) //очищаем форму
+      .then(() => {
+        history("/sign-in");
+      }) //после успешного запроса пробрасываем пользователя на логин
+      .catch(console.error);
   }
 
   return (
@@ -39,6 +38,7 @@ return fetch(``)
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          handleSubmit();
         }}
         name={`sign-up-form`}
         className={`popup__form popup__form_sign-up`}
