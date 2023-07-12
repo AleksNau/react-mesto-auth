@@ -1,9 +1,10 @@
 import React,{useCallback, useState} from "react";
+import { useNavigate  } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const navigate = useNavigate();
   function handlEmail(e) {
     setEmail(e.target.value);
   }
@@ -23,7 +24,7 @@ const resetForm = useCallback(() => {
     //заглушка запроса
     onLogin(email,password)
     .then(resetForm)//очищаем форму
-    .then(() => { history.push('/')})//после успешного запроса пробрасываем пользователя на логин
+    .then(() => { navigate('/')})//после успешного запроса пробрасываем пользователя на логин
     .catch(console.error)
   }
   return (

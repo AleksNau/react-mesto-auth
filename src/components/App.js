@@ -12,12 +12,11 @@ import ImagePopup from "./ImagePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import LoadingText from "../contexts/loadingContext";
 import InfoTooltip from "./InfoTooltip";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate,useNavigate } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
 import authMesto from "../utils/mestoApi";
-import { useNavigate  } from "react-router-dom";
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -41,9 +40,6 @@ const App = () => {
   //элемент history
 const history = useNavigate();
 
-  // const auth = (jwt) => {
-  //   return api.auth.getContent(jwt)
-  // }
   function auth(jwt) {
     return auth.getContent(jwt).then((res) => {
       if (res) {
@@ -59,14 +55,13 @@ const history = useNavigate();
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      //тестовый запрос
-      //    auth(jwt)
+         auth(jwt)
     }
   }, [loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {
-history("/");
+      history("/");
     }
   }, [loggedIn]);
 
@@ -231,8 +226,8 @@ return authMesto.registration(email, password).then((res) => {
                   />
                 }
               />
-              <Route path="/sign-up" element={<Register />}></Route>
-              <Route path="/sign-in" element={<Login />}></Route>
+              <Route path="/sign-up" element={<Register onRegister={onRegister} />}></Route>
+              <Route path="/sign-in" element={<Login onLogin={onLogin} />}></Route>
               <Route path="*" element={(<Navigate to="/" />)} />
               <Route element={loggedIn ? (<Navigate to="/" />) :( <Navigate to="/sign-in" />)}>
 
