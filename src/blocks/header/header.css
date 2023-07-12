@@ -1,6 +1,8 @@
 .header {
     box-sizing: border-box;
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    display: flex;
+    justify-content: space-between;
     margin: 0 auto;
     width: calc(282px + (880 - 282) * ((100vw - 320px) / (1280 - 320)));
     max-width: 880px;
