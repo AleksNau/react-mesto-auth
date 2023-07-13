@@ -71,27 +71,34 @@ const App = () => {
   //функция логина
 
   const onLogin = (email, password) => {
-    authMesto.signin(email, password)
-        .then((res) => {
-      if (!res) throw new Error("Неправильное имя и пароль!");
-      if (res.token) {
-        setLoggedIn(true);
-        localStorage.setItem("jwt", res.token);
-        history("/");
-      }
-    }).catch(console.error);
+    authMesto
+      .signin(email, password)
+      .then((res) => {
+        if (!res) throw new Error("Неправильное имя и пароль!");
+        if (res.token) {
+          setLoggedIn(true);
+          localStorage.setItem("jwt", res.token);
+          history("/");
+        }
+      })
+      .catch(console.error);
   };
 
   //функция логина
 
   const onRegister = (email, password) => {
-    setComplete(true)
-    //закоментил работающий код
-   /* return authMesto.registration(email, password).then((res) => {
-      if (!res || res.statusCode === 400) throw new Error("Что то не так!");
-      
+    
+    return authMesto.registration(email, password).then((res) => {
+      if (!res || res.statusCode === 400) {
+        setstatusReg(false);
+        setComplete(true);
+      } else {
+        setstatusReg(true);
+        setComplete(true);
+      }
+
       return res;
-    });*/
+    });
   };
   function closeAllPopups() {
     setPopupAvatar(false);

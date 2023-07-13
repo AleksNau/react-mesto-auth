@@ -26,12 +26,11 @@ return fetch(``)
   function handleSubmit() {
     //заглушка запроса
     onRegister(email, password)
-    //закоментил работающий код
-      /*.then(resetForm) //очищаем форму
+      .then(resetForm) //очищаем форму
       .then(() => {
         history("/sign-in");
       }) //после успешного запроса пробрасываем пользователя на логин
-      .catch(console.error);*/
+      .catch(console.error);
   }
 
   return (
