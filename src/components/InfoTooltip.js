@@ -1,10 +1,12 @@
 import React from "react";
 import ok from "../images/Union.svg";
+import stop from "../images/Unionstop.svg";
 
 export default function InfoTooltip({
                                         isOpen,
                                         name,
-                                        onClose
+                                        onClose,
+                                        statusReg
                                     }) {
 
     return (
@@ -13,8 +15,8 @@ export default function InfoTooltip({
         }}>
             <div className="popup__conteiner" onClick={event => event.stopPropagation()}>
                 <button type="button" className="popup__close-button" onClick={onClose}/>
-                        <img src={ok} alt="логотип" className="popup__status-image" />
-                        <h2 className="popup__title">Вы успешно зарегистрировались!</h2>
+                        <img src={statusReg ? ok : stop} alt="логотип" className="popup__status-image" />
+                        <h2 className="popup__title">{statusReg ? "Вы успешно зарегистрировались!" : "Что-то пошло не так! Попробуйте ещё раз."}</h2>
             </div>
         </div>
     );

@@ -37,6 +37,9 @@ const App = () => {
   //проверка авторизации
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  //статус регистрации
+  const [statusReg, setstatusReg] = useState(false);
+
   //элемент history
   const history = useNavigate();
 
@@ -281,6 +284,7 @@ const App = () => {
             isOpen={isCompletePopupOpen}
             name={"complete"}
             onClose={closeAllPopups}
+            statusReg={statusReg}
           />
         </CurrentUserContext.Provider>
       </LoadingText.Provider>
