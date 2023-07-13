@@ -73,9 +73,10 @@ const App = () => {
       if (!res) throw new Error("Неправильное имя и пароль!");
       if (res.token) {
         setLoggedIn(true);
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("jwt", res.token);
+        history("/");
       }
-    });
+    }).catch(console.error);
   };
 
   //функция логина
