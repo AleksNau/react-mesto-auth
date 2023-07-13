@@ -82,10 +82,13 @@ const App = () => {
   //функция логина
 
   const onRegister = (email, password) => {
-    return authMesto.registration(email, password).then((res) => {
+    setComplete(true)
+    //закоментил работающий код
+   /* return authMesto.registration(email, password).then((res) => {
       if (!res || res.statusCode === 400) throw new Error("Что то не так!");
+      
       return res;
-    });
+    });*/
   };
   function closeAllPopups() {
     setPopupAvatar(false);

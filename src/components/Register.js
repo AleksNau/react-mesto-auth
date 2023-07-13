@@ -26,11 +26,12 @@ return fetch(``)
   function handleSubmit() {
     //заглушка запроса
     onRegister(email, password)
-      .then(resetForm) //очищаем форму
+    //закоментил работающий код
+      /*.then(resetForm) //очищаем форму
       .then(() => {
         history("/sign-in");
       }) //после успешного запроса пробрасываем пользователя на логин
-      .catch(console.error);
+      .catch(console.error);*/
   }
 
   return (
@@ -44,6 +45,7 @@ return fetch(``)
         className={`popup__form popup__form_sign-up`}
         id={`sign-up-form`}
         method="post"
+        noValidate
       >
         <fieldset className="sign-up__fieldset">
           <legend className="sign-up__title">Регистрация</legend>
