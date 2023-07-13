@@ -1,10 +1,8 @@
 import React, { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   function handlEmail(e) {
     setEmail(e.target.value);
   }
@@ -14,10 +12,10 @@ const Login = ({ onLogin }) => {
     setPassword(e.target.value);
   }
   //колбэк для того чтобы функция не пересоздавалась
-  const resetForm = useCallback(() => {
+ /* const resetForm = useCallback(() => {
     setEmail("");
     setPassword("");
-  }, []);
+  }, []);*/
 
   function handleSubmit() {
     onLogin(email, password)

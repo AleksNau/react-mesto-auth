@@ -2,9 +2,6 @@ import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Register = ({ onRegister }) => {
-  /*export const getContent= (token) => {
-return fetch(``)
-    }*/
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,7 +71,7 @@ return fetch(``)
               minLength="2"
               maxLength="30"
               placeholder="Пароль"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handlePassword(e)}
               required
             />
             <span id="info-error" className="popup__error">
