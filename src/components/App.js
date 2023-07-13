@@ -41,7 +41,7 @@ const App = () => {
   const history = useNavigate();
 
   function auth(jwt) {
-    return auth.getContent(jwt).then((res) => {
+    return authMesto.getContent(jwt).then((res) => {
       if (res) {
         setLoggedIn(true);
         setCurrentUser({
@@ -53,9 +53,9 @@ const App = () => {
   }
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth(jwt);
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth(token);
     }
   }, [loggedIn]);
 
@@ -68,7 +68,8 @@ const App = () => {
   //функция логина
 
   const onLogin = (email, password) => {
-    authMesto.signin(email, password).then((res) => {
+    authMesto.signin(email, password)
+        .then((res) => {
       if (!res) throw new Error("Неправильное имя и пароль!");
       if (res.token) {
         setLoggedIn(true);

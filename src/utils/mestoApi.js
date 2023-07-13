@@ -35,13 +35,12 @@ class mestoApi {
 
 
   getContent(token) {
-    return fetch(this._url + "/signin", {
+    return fetch(`${this._url}/users/me`, {
       method: "GET",
-      headers: this._headers,
-      body: JSON.stringify({
+      headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-      }),
+      },
     }).then(this._checkResponse);
   }
 }

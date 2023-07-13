@@ -21,7 +21,7 @@ const Login = ({ onLogin }) => {
 
   function handleSubmit() {
     onLogin(email, password)
-      .then(resetForm) //очищаем форму
+     // .then(resetForm) //очищаем форму
       .then(() => {
         navigate("/");
       }) //после успешного запроса пробрасываем пользователя на логин
