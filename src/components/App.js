@@ -45,18 +45,18 @@ const App = () => {
   const history = useNavigate();
 
   function auth(jwt) {
-    return authMesto.getContent(jwt)
-    .then((res) => {
-      if (res) {
-        setLoggedIn(true);
-        setCurrentUser({
-          username: res.name,
-          email: res.email,
-        });
-        
-      }
-    })
-    .catch(console.error);;
+    return authMesto
+      .getContent(jwt)
+      .then((res) => {
+        if (res) {
+          setLoggedIn(true);
+          setCurrentUser({
+            username: res.name,
+            email: res.email,
+          });
+        }
+      })
+      .catch(console.error);
   }
 
   useEffect(() => {
@@ -92,19 +92,18 @@ const App = () => {
   //функция логина
 
   const onRegister = (email, password) => {
-    
-    return authMesto.registration(email, password)
-    .then((res) => {
-      if (!res || res.statusCode === 400) {
-        setstatusReg(false);
-        setComplete(true);
-      } else {
-        setstatusReg(true);
-        setComplete(true);
-      }
-      return res;
-    })
-    .catch(console.error);
+    return authMesto
+      .registration(email, password)
+      .then((res) => {
+        if (!res || res.statusCode === 400) {
+          setstatusReg(false);
+        } else {
+          setstatusReg(true);
+        }
+        return res;
+      })
+      .catch(console.error)
+      .finally(setComplete(true));
   };
   function closeAllPopups() {
     setPopupAvatar(false);
@@ -215,9 +214,9 @@ const App = () => {
 
   function signOut() {
     localStorage.removeItem("token");
-    setHeaderEmail(""); 
-    setLoggedIn(false); 
-    history("/sign-in"); 
+    setHeaderEmail("");
+    setLoggedIn(false);
+    history("/sign-in");
   }
 
   React.useEffect(() => {
@@ -234,7 +233,7 @@ const App = () => {
       <LoadingText.Provider value={isLoading}>
         <CurrentUserContext.Provider value={currentUser}>
           <div className="page">
-            <Header email={headerEmail} signOut={signOut}/>
+            <Header email={headerEmail} signOut={signOut} />
 
             <Routes>
               <Route

@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Register = ({ onRegister }) => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useNavigate();
