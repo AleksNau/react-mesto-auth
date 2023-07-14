@@ -55,7 +55,8 @@ const App = () => {
         });
         
       }
-    });
+    })
+    .catch(console.error);;
   }
 
   useEffect(() => {
@@ -92,7 +93,8 @@ const App = () => {
 
   const onRegister = (email, password) => {
     
-    return authMesto.registration(email, password).then((res) => {
+    return authMesto.registration(email, password)
+    .then((res) => {
       if (!res || res.statusCode === 400) {
         setstatusReg(false);
         setComplete(true);
@@ -100,9 +102,9 @@ const App = () => {
         setstatusReg(true);
         setComplete(true);
       }
-
       return res;
-    });
+    })
+    .catch(console.error);
   };
   function closeAllPopups() {
     setPopupAvatar(false);

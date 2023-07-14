@@ -41,7 +41,6 @@ const Register = ({ onRegister }) => {
         className={`popup__form popup__form_sign-up`}
         id={`sign-up-form`}
         method="post"
-        noValidate
       >
         <fieldset className="sign-up__fieldset">
           <legend className="sign-up__title">Регистрация</legend>
