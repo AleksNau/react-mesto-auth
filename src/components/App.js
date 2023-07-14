@@ -39,18 +39,21 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState({});
   //статус регистрации
   const [statusReg, setstatusReg] = useState(false);
+  const [headerEmail, setHeaderEmail] = useState("");
 
   //элемент history
   const history = useNavigate();
 
   function auth(jwt) {
-    return authMesto.getContent(jwt).then((res) => {
+    return authMesto.getContent(jwt)
+    .then((res) => {
       if (res) {
         setLoggedIn(true);
         setCurrentUser({
           username: res.name,
           email: res.email,
         });
+        
       }
     });
   }
@@ -78,6 +81,7 @@ const App = () => {
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
+          setHeaderEmail(email);
           history("/");
         }
       })
@@ -207,6 +211,13 @@ const App = () => {
       .finally(() => setIsLoading(false));
   }
 
+  function signOut() {
+    localStorage.removeItem("token");
+    setHeaderEmail(""); 
+    setLoggedIn(false); 
+    history("/sign-in"); 
+  }
+
   React.useEffect(() => {
     Promise.all([api.getProfileInfo(), api.getCards()])
       .then(([info, cards]) => {
@@ -221,7 +232,7 @@ const App = () => {
       <LoadingText.Provider value={isLoading}>
         <CurrentUserContext.Provider value={currentUser}>
           <div className="page">
-            <Header />
+            <Header email={headerEmail} signOut={signOut}/>
 
             <Routes>
               <Route
