@@ -72,8 +72,6 @@ const App = () => {
     }
   }, [loggedIn]);
 
-  //функция логина
-
   const onLogin = (email, password) => {
     authMesto
       .signin(email, password)
@@ -88,8 +86,6 @@ const App = () => {
       })
       .catch(console.error);
   };
-
-  //функция логина
 
   const onRegister = (email, password) => {
     return authMesto
