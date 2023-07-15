@@ -11,7 +11,7 @@ export default function InfoTooltip({ isOpen, name, onClose, statusReg }) {
       }}
     >
       <div
-        className="popup__conteiner"
+        className="popup__conteiner popup__conteiner_register"
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -24,7 +24,7 @@ export default function InfoTooltip({ isOpen, name, onClose, statusReg }) {
           alt="логотип"
           className="popup__status-image"
         />
-        <h2 className="popup__title">
+        <h2 className="popup__title popup__title_register">
           {statusReg
             ? "Вы успешно зарегистрировались!"
             : "Что-то пошло не так! Попробуйте ещё раз."}

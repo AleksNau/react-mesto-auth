@@ -50,7 +50,7 @@ const Login = ({ onLogin }) => {
             <input
               name="password"
               id="pass"
-              type="text"
+              type="password"
               className="sign-up__input"
               minLength="2"
               maxLength="30"

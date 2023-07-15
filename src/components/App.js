@@ -95,16 +95,16 @@ const App = () => {
     return authMesto
       .registration(email, password)
       .then((res) => {
-        if (!res || res.statusCode === 400) {
-          setstatusReg(false);
-          setRegisterPopup(true);
-        } else {
+        if (res) {
           setstatusReg(true);
-          setRegisterPopup(true);
+          navigate("/sign-in");
         }
-        return res;
       })
-      .catch(console.error);
+      .catch(() => {
+        console.error();
+        setstatusReg(false);
+      })
+        .finally(()=> {setRegisterPopup(true);})
   };
   function closeAllPopups() {
     setPopupAvatar(false);

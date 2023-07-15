@@ -18,10 +18,6 @@ const Register = ({ onRegister }) => {
 
   function handleSubmit() {
     onRegister(email, password)
-      .then(() => {
-        history("/sign-in");
-      }) //после успешного запроса пробрасываем пользователя на логин
-      .catch(console.error);
   }
 
   return (
@@ -59,7 +55,7 @@ const Register = ({ onRegister }) => {
             <input
               name="password"
               id="pass"
-              type="text"
+              type="password"
               className="sign-up__input"
               minLength="2"
               maxLength="30"
