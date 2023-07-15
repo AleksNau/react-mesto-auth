@@ -45,7 +45,5 @@ class mestoApi {
   }
 }
 
-const authMesto = new mestoApi("https://auth.nomoreparties.co", {
-  "Content-Type": "application/json",
-});
+const authMesto = new mestoApi("https://auth.nomoreparties.co");
 export default authMesto;

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Register = ({ onRegister }) => {
@@ -6,10 +6,7 @@ const Register = ({ onRegister }) => {
   const [password, setPassword] = useState("");
   const history = useNavigate();
 
-  const resetForm = useCallback(() => {
-    setEmail("");
-    setPassword("");
-  }, []);
+
   function handlEmail(e) {
     setEmail(e.target.value);
   }
@@ -20,9 +17,7 @@ const Register = ({ onRegister }) => {
   }
 
   function handleSubmit() {
-    //заглушка запроса
     onRegister(email, password)
-      .then(resetForm) //очищаем форму
       .then(() => {
         history("/sign-in");
       }) //после успешного запроса пробрасываем пользователя на логин
