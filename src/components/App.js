@@ -66,13 +66,13 @@ const App = () => {
     if (token) {
       auth(token);
     }
-  }, [loggedIn]);
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
       navigate("/");
     }
-  }, []);
+  }, [loggedIn]);
 
   const onLogin = (email, password) => {
     authMesto
