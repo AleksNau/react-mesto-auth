@@ -54,13 +54,15 @@ const App = () => {
             username: res.name,
             email: res.email,
           });
+          setHeaderEmail(res.data.email);
+          navigate("/")
         }
       })
       .catch(console.error);
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("jwt");
     if (token) {
       auth(token);
     }
@@ -210,7 +212,7 @@ const App = () => {
   }
 
   function signOut() {
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     setHeaderEmail("");
     setLoggedIn(false);
     navigate("/sign-in");
