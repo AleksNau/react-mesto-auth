@@ -70,7 +70,7 @@ const App = () => {
     if (loggedIn) {
       navigate("/");
     }
-  }, [loggedIn]);
+  }, []);
 
   const onLogin = (email, password) => {
     authMesto
