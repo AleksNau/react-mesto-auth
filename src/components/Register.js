@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Register = ({ onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useNavigate();
 
 
-  function handlEmail(e) {
+  function handleEmail(e) {
     setEmail(e.target.value);
   }
 
@@ -44,7 +42,7 @@ const Register = ({ onRegister }) => {
               minLength="2"
               maxLength="40"
               placeholder="Email"
-              onChange={handlEmail}
+              onChange={handleEmail}
               required
             />
             <span id="name-error" className="popup__error">
