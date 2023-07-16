@@ -26,7 +26,7 @@ const App = () => {
   const [isEditProfilePopupOpen, setPopupProfile] = useState(false);
   const [isAddPlacePopupOpen, setPopupAdd] = useState(false);
   const [isSubmitPopupOpen, setPopupSubmit] = useState(false);
-  const [isRegisterPopupOpen, setRegisterPopup] = useState(false);
+  const [isRegisterPopupOpen, setRegisterPopup] = useState(true);
 
   const [cardToDelete, setCardToDelete] = useState({});
   //установить карточку
