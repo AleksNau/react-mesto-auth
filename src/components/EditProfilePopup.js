@@ -2,6 +2,7 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import LoadingText from "../contexts/loadingContext";
+import { useForm } from "../hooks/useForm";
 
 export default function EditProfilePopup({
   onUpdateUser,
@@ -11,33 +12,22 @@ export default function EditProfilePopup({
 }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { name, about } = currentUser;
-  const [profileName, setProfileName] = React.useState("");
-  const [profileDescription, setProfileDescription] = React.useState("");
   const isLoading = React.useContext(LoadingText);
+  const {values, handleChange, setValues} = useForm({});
+
 
   React.useEffect(() => {
     if (isOpen) {
-      setProfileName(name);
-      setProfileDescription(about);
+      setValues(name);
+      setValues(about);
     }
   }, [isOpen, currentUser]);
 
-  function handleNameChange(e) {
-    setProfileName(e.target.value);
+  function handleSubmit(e) {
+    e.preventDefault()
+    onUpdateUser(values);
   }
-
-  // input change
-  function handleDescriptionChange(e) {
-    setProfileDescription(e.target.value);
-  }
-
-  function handleSubmit() {
-    onUpdateUser({
-      Name: profileName,
-      Info: profileDescription,
-    });
-  }
-
+//useForm работает но не отправляет всё и сразу нужно переходить в поля сразу
   return (
     <PopupWithForm
       isOpen={isOpen}
@@ -50,14 +40,13 @@ export default function EditProfilePopup({
         <>
           <label>
             <input
-              name="Name"
+              name="name"
               id="name"
               type="text"
               className="popup__input popup__input_type_name"
               minLength="2"
               maxLength="40"
-              value={profileName}
-              onChange={(e) => handleNameChange(e)}
+              onChange={(e) =>handleChange(e)}
               required
             />
             <span id="name-error" className="popup__error">
@@ -66,14 +55,13 @@ export default function EditProfilePopup({
           </label>
           <label>
             <input
-              name="Info"
+              name="about"
               id="info"
               type="text"
               className="popup__input popup__input_type_info"
               minLength="2"
               maxLength="200"
-              value={profileDescription}
-              onChange={(e) => handleDescriptionChange(e)}
+              onChange={(e) =>handleChange(e)}
               required
             />
             <span id="info-error" className="popup__error">
