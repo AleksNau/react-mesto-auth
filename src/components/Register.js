@@ -1,16 +1,11 @@
-import React, { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
 const Register = ({ onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useNavigate();
 
-  const resetForm = useCallback(() => {
-    setEmail("");
-    setPassword("");
-  }, []);
-  function handlEmail(e) {
+
+  function handleEmail(e) {
     setEmail(e.target.value);
   }
 
@@ -20,13 +15,7 @@ const Register = ({ onRegister }) => {
   }
 
   function handleSubmit() {
-    //заглушка запроса
     onRegister(email, password)
-      .then(resetForm) //очищаем форму
-      .then(() => {
-        history("/sign-in");
-      }) //после успешного запроса пробрасываем пользователя на логин
-      .catch(console.error);
   }
 
   return (
@@ -53,7 +42,7 @@ const Register = ({ onRegister }) => {
               minLength="2"
               maxLength="40"
               placeholder="Email"
-              onChange={handlEmail}
+              onChange={handleEmail}
               required
             />
             <span id="name-error" className="popup__error">
@@ -64,7 +53,7 @@ const Register = ({ onRegister }) => {
             <input
               name="password"
               id="pass"
-              type="text"
+              type="password"
               className="sign-up__input"
               minLength="2"
               maxLength="30"

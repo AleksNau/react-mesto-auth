@@ -1,8 +1,8 @@
-# Проект: Место
+# Проект: Место-Авторизация
 
-Учебный проект о работе с DOM элементами. Спринт от Яндекс практикума
+Учебный проект c использованием React. В данной его части реализовано подключение к серверу с возможностью регистрации и авторизации пользователя.
 
-https://aleksnau.github.io/mesto-react/
+https://aleksnau.github.io/mesto-react-auth/
 
 ## Color Reference
 
@@ -14,15 +14,9 @@ https://aleksnau.github.io/mesto-react/
 
 ## Features
 
-- Flexbox,Grid
 - Проект собран через Webpack
-- Адаптив,Кросбраузерность
-- javascript
-- Git
-- Валидация всех форм через JS
-- Улучшена UX при работе с попапами
-- Используется модульность JS
-- Используются классы для создания карточки
+- Адаптивная верстка
+- React
 - Подключен к серверу
 - Асинхроность
 
@@ -30,9 +24,11 @@ https://aleksnau.github.io/mesto-react/
 
 Оптимизированы изображения через Photoshop
 Код оптимизирован через PostCss
+Код стайл отредактирован Prettier
 
 
 ## Related
+[React](https://ru.legacy.reactjs.org/)
 
 [Autoprefixer](https://github.com/autoprefixer/autoprefixer.github.io)
 

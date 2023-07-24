@@ -20,7 +20,7 @@ const Main = ({
     <main className="main">
       <section className="profile">
         <div className="profile__info-conteiner">
-          <img src={user.avatar} alt="Жак Кусто" className="profile__avatar" />
+          <img src={user.avatar} alt="Ваш аватар" className="profile__avatar" />
           <button
             className="profile__avatar-button"
             onClick={() => {

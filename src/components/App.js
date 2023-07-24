@@ -26,7 +26,7 @@ const App = () => {
   const [isEditProfilePopupOpen, setPopupProfile] = useState(false);
   const [isAddPlacePopupOpen, setPopupAdd] = useState(false);
   const [isSubmitPopupOpen, setPopupSubmit] = useState(false);
-  const [isCompletePopupOpen, setComplete] = useState(false);
+  const [isRegisterPopupOpen, setRegisterPopup] = useState(false);
 
   const [cardToDelete, setCardToDelete] = useState({});
   //установить карточку
@@ -41,8 +41,8 @@ const App = () => {
   const [statusReg, setstatusReg] = useState(false);
   const [headerEmail, setHeaderEmail] = useState("");
 
-  //элемент history
-  const history = useNavigate();
+  //элемент navigate
+  const navigate = useNavigate();
 
   function auth(jwt) {
     return authMesto
@@ -54,25 +54,25 @@ const App = () => {
             username: res.name,
             email: res.email,
           });
+          setHeaderEmail(res.data.email);
+          navigate("/")
         }
       })
       .catch(console.error);
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("jwt");
     if (token) {
       auth(token);
     }
-  }, [loggedIn]);
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
-      history("/");
+      navigate("/");
     }
   }, [loggedIn]);
-
-  //функция логина
 
   const onLogin = (email, password) => {
     authMesto
@@ -83,34 +83,33 @@ const App = () => {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
           setHeaderEmail(email);
-          history("/");
+          navigate("/");
         }
       })
       .catch(console.error);
   };
 
-  //функция логина
-
   const onRegister = (email, password) => {
     return authMesto
       .registration(email, password)
       .then((res) => {
-        if (!res || res.statusCode === 400) {
-          setstatusReg(false);
-        } else {
+        if (res) {
           setstatusReg(true);
+          navigate("/sign-in");
         }
-        return res;
       })
-      .catch(console.error)
-      .finally(setComplete(true));
+      .catch(() => {
+        console.error();
+        setstatusReg(false);
+      })
+        .finally(()=> {setRegisterPopup(true);})
   };
   function closeAllPopups() {
     setPopupAvatar(false);
     setPopupProfile(false);
     setPopupAdd(false);
     setPopupSubmit(false);
-    setComplete(false);
+    setRegisterPopup(false);
     handleCardClick({});
   }
 
@@ -213,10 +212,10 @@ const App = () => {
   }
 
   function signOut() {
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     setHeaderEmail("");
     setLoggedIn(false);
-    history("/sign-in");
+    navigate("/sign-in");
   }
 
   React.useEffect(() => {
@@ -258,17 +257,17 @@ const App = () => {
               <Route
                 path="/sign-up"
                 element={<Register onRegister={onRegister} />}
-              ></Route>
+              />
               <Route
                 path="/sign-in"
                 element={<Login onLogin={onLogin} />}
-              ></Route>
+              />
               <Route path="*" element={<Navigate to="/" />} />
               <Route
                 element={
                   loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
                 }
-              ></Route>
+              />
             </Routes>
             <Footer />
           </div>
@@ -300,8 +299,8 @@ const App = () => {
           />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
           <InfoTooltip
-            isOpen={isCompletePopupOpen}
-            name={"complete"}
+            isOpen={isRegisterPopupOpen}
+            name={"register"}
             onClose={closeAllPopups}
             statusReg={statusReg}
           />

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -11,11 +11,6 @@ const Login = ({ onLogin }) => {
   function handlePassword(e) {
     setPassword(e.target.value);
   }
-  //колбэк для того чтобы функция не пересоздавалась
- /* const resetForm = useCallback(() => {
-    setEmail("");
-    setPassword("");
-  }, []);*/
 
   function handleSubmit() {
     onLogin(email, password)
@@ -55,7 +50,7 @@ const Login = ({ onLogin }) => {
             <input
               name="password"
               id="pass"
-              type="text"
+              type="password"
               className="sign-up__input"
               minLength="2"
               maxLength="30"

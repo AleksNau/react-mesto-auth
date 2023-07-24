@@ -8,11 +8,16 @@ const Header = ({email,signOut}) => {
     <header className="header">
       <img src={logo} alt="логотип" className="header__logo" />
       <Routes>
-        <Route path="/sign-in" element={<button className="header__button" onClick={() => {navigate("/sign-up")}}>Зарегистрироваться</button>}></Route>
+        <Route path="/sign-in" element={<button className="header__button" onClick={() => {navigate("/sign-up")}}>Регистрация</button>}></Route>
         <Route path="/sign-up" element={<button className="header__button" onClick={() => {navigate("/sign-in")}}>Войти</button>}></Route>
-        <Route path="/" element={<button className="header__button" onClick={signOut}>{`${email} Выйти`}</button>}></Route>
+        <Route path="/" element={<div className="header__container">
+            <span className="header__email">{email}</span>
+            <button className="header__button" onClick={signOut}>
+                Выйти
+            </button>
+        </div>}></Route>
       </Routes>
-      
+
     </header>
   );
 };
