@@ -45,5 +45,5 @@ class mestoApi {
   }
 }
 
-const authMesto = new mestoApi("https://auth.nomoreparties.co");
+const authMesto = new mestoApi("http://localhost:3000");
 export default authMesto;

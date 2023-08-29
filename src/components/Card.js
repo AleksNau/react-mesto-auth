@@ -11,8 +11,9 @@ export default function Card({
   setCardToDelete,
 }) {
   const user = React.useContext(CurrentUserContext);
-  const isOwn = cardData.owner._id === user._id;
-  const isLiked = cardData.likes.some((i) => i._id === user._id);
+  //cardData.owner_id в след строке
+  const isOwn = cardData.owner === user._id;
+  const isLiked = cardData.likes.some((i) => i === user._id);
   const cardLikeButtonClassName = `elements__like ${
     isLiked && "elements__like_active"
   }`;

@@ -164,7 +164,7 @@ const App = () => {
   function handleCardDelete(card) {
     setIsLoading(true);
     api
-      .deleteCard(card._id)
+      .deleteCard(card._id, localStorage.getItem("jwt"))
       .then(() => {
         setCards((state) => state.filter((item) => item._id !== card._id));
         closeAllPopups();
@@ -178,7 +178,7 @@ const App = () => {
   function handleUpdateUser(data) {
     setIsLoading(true);
     api
-      .setName(data)
+      .setName(data,localStorage.getItem("jwt"))
       .then((newUser) => {
         setCurrentUser(newUser);
         closeAllPopups();
@@ -190,7 +190,7 @@ const App = () => {
   function handleUpdateAvatar(data) {
     setIsLoading(true);
     api
-      .sendAvatar(data.avatar)
+      .sendAvatar(data.avatar,localStorage.getItem("jwt"))
       .then((newAvatar) => {
         setCurrentUser(newAvatar);
         closeAllPopups();
@@ -202,7 +202,7 @@ const App = () => {
   function handleAddPlaceSubmit(data) {
     setIsLoading(true);
     api
-      .newCard(data.name, data.link)
+      .newCard(data.name, data.link, localStorage.getItem("jwt"))
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -219,7 +219,7 @@ const App = () => {
   }
 
   React.useEffect(() => {
-    Promise.all([api.getProfileInfo(), api.getCards()])
+    Promise.all([api.getProfileInfo(localStorage.getItem("jwt")), api.getCards(localStorage.getItem("jwt"))])
       .then(([info, cards]) => {
         setCurrentUser(info);
         setCards(cards);
