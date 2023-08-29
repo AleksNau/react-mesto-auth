@@ -84,8 +84,9 @@ class Api {
     }).then(this._checkResponse);
   }
 //возможно убрать "Content-Type": "application/json"
-  putLike(cardId, token) {
-    return fetch(this._url + `/cards/likes/${cardId}`, {
+  putLike(cardId) {
+    const token = localStorage.getItem("jwt");
+    return fetch(this._url + `/cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -94,8 +95,9 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  deleteLike(cardId, token) {
-    return fetch(this._url + `/cards/likes/${cardId}`, {
+  deleteLike(cardId) {
+    const token = localStorage.getItem("jwt");
+    return fetch(this._url + `/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

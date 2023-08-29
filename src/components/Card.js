@@ -13,7 +13,7 @@ export default function Card({
   const user = React.useContext(CurrentUserContext);
   //cardData.owner_id в след строке
   const isOwn = cardData.owner === user._id;
-  const isLiked = cardData.likes.some((i) => i === user._id);
+  const isLiked = cardData.likes.some(i => i === user._id);
   const cardLikeButtonClassName = `elements__like ${
     isLiked && "elements__like_active"
   }`;
@@ -35,7 +35,7 @@ export default function Card({
             className={cardLikeButtonClassName}
             onClick={() => onCardLike(cardData)}
           />
-          <p className="elements__like-counter">{likes}</p>
+          <p className="elements__like-counter">{cardData.likes.length}</p>
         </div>
         {isOwn && (
           <button

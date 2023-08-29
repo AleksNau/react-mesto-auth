@@ -52,7 +52,6 @@ const Main = ({
           <Card
             cardData={card}
             key={card._id}
-            likes={card.likes.length}
             isOpen={isPopupSubmit}
             setActive={onSubmitDelete}
             getCard={onCardClick}
