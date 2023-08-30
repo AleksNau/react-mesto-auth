@@ -91,7 +91,7 @@ class Api {
       headers: {
         "Content-Type": "application/json",
         "Authorization" : `Bearer ${token}`
-    },
+      },
     }).then(this._checkResponse);
   }
 
@@ -102,9 +102,30 @@ class Api {
       headers: {
         "Content-Type": "application/json",
         "Authorization" : `Bearer ${token}`
-    },
+      },
     }).then(this._checkResponse);
   }
+
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return fetch(this._url + `/cards/${cardId}/likes`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+        method: "DELETE",
+      }).then((res) => this._checkResponse(res));
+    } else {
+      return fetch(this._url + `/cards/${cardId}/likes`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+        method: "PUT",
+      }).then((res) => this._checkResponse(res));
+    }
+  }
+
 
 }
 

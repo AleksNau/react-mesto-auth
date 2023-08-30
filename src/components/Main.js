@@ -48,18 +48,21 @@ const Main = ({
         />
       </section>
       <ul className="elements">
-        {cards.map((card) => (
-          <Card
-            cardData={card}
-            key={card._id}
-            isOpen={isPopupSubmit}
-            setActive={onSubmitDelete}
-            getCard={onCardClick}
-            onCardLike={onCardLike}
-            handleDeleteClick={onCardDelete}
-            setCardToDelete={setCardToDelete}
-          />
-        ))}
+        {cards.map((card) => {
+          return (
+              <Card
+                  key={card._id}
+                  cardData={card}
+                  likes={card.likes}
+                  isOpen={isPopupSubmit}
+                  setActive={onSubmitDelete}
+                  onCardClick={onCardClick}
+                  onCardLike={onCardLike}
+                  onCardDelete={onCardDelete}
+                  setCardToDelete={setCardToDelete}
+              />
+          );
+        })}
       </ul>
       
     </main>
