@@ -225,7 +225,7 @@ const App = () => {
         setCards(cards);
       })
       .catch(console.error);
-  }, []);
+  }, [loggedIn]);
 
   return (
     <div className="root">
